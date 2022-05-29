@@ -4,12 +4,23 @@ services:
     container_name: react-tutorial
     hostname: react-tutorial
     restart: always
+    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
+    command: sh -c "cd app && PORT=3000 npm start"
+    expose:
+      - 3000
     volumes:
       - ./src:/src
-    command: sh -c "cd app && PORT=3001 npm start"
-    ports:
-      - "3001:3001"
-    stdin_open: true
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.django.entrypoints=web
+      - traefik.http.routers.django.rule=Host(`react.localhost`)
+
+networks:
+  web:
+    name: docker-mgr_web
+    external: true
