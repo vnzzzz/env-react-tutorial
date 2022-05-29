@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  react-tutorial:
+    container_name: react-tutorial
+    hostname: react-tutorial
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/src
+    command: sh -c "cd app && PORT=3001 npm start"
+    ports:
+      - "3001:3001"
+    stdin_open: true
