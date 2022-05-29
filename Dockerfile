@@ -1,3 +1,5 @@
 FROM node:18-alpine
 
+ENV WDS_SOCKET_PORT=0
+
 WORKDIR /src
