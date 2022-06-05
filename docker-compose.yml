@@ -8,9 +8,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "cd app-ts && PORT=3000 npm start"
+    command: sh -c "cd app-ts && PORT=80 npm start"
     expose:
-      - 3000
+      - 80
     volumes:
       - ./src:/src
     networks:
